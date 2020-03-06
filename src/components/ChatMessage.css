@@ -1,0 +1,46 @@
+.chat-message{
+    display: flex;
+    width: 500px; 
+    align-items: center;
+    margin: 20px 12px; 
+}
+
+.msg-name{
+    font-size: 14px;
+    color: rgb(29, 29, 29); 
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.received {
+    margin: 0px;
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    padding: 6px 12px;
+}
+
+
+.avatar {
+    width: 40px; 
+    border-radius: 50%;
+    margin: 0 14px; 
+    padding-top: 5px;
+    
+}
+
+.sent {
+    margin:  0;
+    background-color: rgb(20, 100, 237);
+    color:rgb(250, 246, 246);
+    border-radius: 10px;
+    padding: 6px 12px;
+
+    
+}
+
+.sent-cont {
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    margin: 0 10px; 
+}

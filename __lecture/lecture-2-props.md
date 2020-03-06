@@ -88,6 +88,7 @@ const UserProfile = ({ username, email, bio }) => {
 
 Make the components reusable by using props.
 
+original
 ```jsx
 function VideoPlayer(props) {
   return (
@@ -103,7 +104,44 @@ function VideoPlayer(props) {
 }
 ```
 
+new
+
+```jsx
+function VideoPlayer(props) {
+  return (
+    <div>
+      <video
+        src={props.videoUrl}
+        width={props.width}
+        height={props.height}
+      />
+      <p>{props.description}</p>
+    </div>
+  );
+}
+
+```
+OR
+
+```jsx
+function VideoPlayer({videoUrl, width, height}) {
+  return (
+    <div>
+      <video
+        src={videoUrl}
+        width={width}
+        height={height}
+      />
+      <p>{description}</p>
+    </div>
+  );
+}
+
+```
+
 ---
+
+original
 
 ```jsx
 function Tweet(props) {
@@ -129,8 +167,34 @@ function Tweet(props) {
 }
 ```
 
----
+new 
 
+```jsx
+function Tweet(props) {
+  return (
+    <div>
+      <Avatar src={props.imgSrc} />
+      <div>
+        <p>
+          <span className="user-name">{props.userName}</span>
+          <span className="handle">{props.handle}</span>
+          <span className="date">{props.date}</span>
+        </p>
+        <p>{props.content}</p>
+        <div>
+          <replyBtn />
+          <retweetBtn />
+          <likeBtn />
+          <shareBtn /> 
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+original
 ```jsx
 function Header(props) {
   return (
@@ -146,6 +210,22 @@ function Header(props) {
 }
 ```
 
+mine
+
+```jsx
+function Header(props) {
+  return (
+    <header>
+      <h1>{title}</h1>
+      <nav>
+        <a href={props.nav.first.url}>{props.nav.first.label}</a>
+        <a href="/contact">Contact</a>
+      </nav>
+
+    </header>
+  );
+}
+```
 ---
 
 ### Mapping over items
@@ -213,7 +293,7 @@ const storeItems = [
   { id: 'c', price: 44.99, name: 'Top Hat' },
 ];
 
-function App(props) {
+function App() {
   return (
     <div>
       {storeItems.map(item => (
@@ -231,6 +311,8 @@ function App(props) {
 Use `map` in the following snippets.
 
 ---
+
+original
 
 ```jsx
 const pets = [
@@ -256,7 +338,43 @@ const pets = [
 </div>;
 ```
 
+mine 
+
+```jsx
+const pets = [
+  /* omitted */
+];
+
+function petInfo (props) = {
+  return (
+    <div>
+      <p>name = {props.name}</p>
+      <p>age = {props.age}</p>
+      <p>species = {props.species}</p>
+      <p>breed = {props.breed}</p>
+    </div>
+
+
+  )
+}
+
+<div>
+  <h1 className="title">My pets:</h1>
+  <ul>
+    {pets.map(pet => (
+      <PetInfo
+        name={pets[1].name}
+        age={pets[1].age}
+        species={pets[1].species}
+        breed={pets[1].breed}
+            />
+      ))}
+  </ul>
+</div>;
+```
 ---
+
+skipped
 
 ```jsx
 const forecasts = [4, -3, 1, 9, 4, 2, -6];
@@ -276,6 +394,8 @@ const forecasts = [4, -3, 1, 9, 4, 2, -6];
 
 ---
 
+orig - get the vegetarian ones
+
 ```jsx
 const pizzaToppings = [
   { name: 'pepperoni', isVegetarian: false },
@@ -287,6 +407,25 @@ const pizzaToppings = [
 <Pizza>
   <Topping name="green pepper" />
   <Topping name="broccoli" />
+</Pizza>
+```
+
+mine 
+
+```jsx
+const pizzaToppings = [
+  { name: 'pepperoni', isVegetarian: false },
+  { name: 'green pepper', isVegetarian: true },
+  { name: 'broccoli', isVegetarian: true },
+  { name: 'sausage', isVegetarian: false },
+]
+
+
+<Pizza>
+  {pizzaToppings
+  .filter(topping => topping.isVegetarian)
+  .map(topping => <Topping name={topping.name} />)
+  }
 </Pizza>
 ```
 

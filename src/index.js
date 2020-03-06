@@ -8,7 +8,9 @@ import './styles.css';
 
 const rootElement = document.getElementById('root');
 
+console.log(data.conversation.messages);
+
 ReactDOM.render(
-  <App currentUser={data.currentUser} conversation={data.conversation} />,
+  <App currentUser={data.currentUser} conversation={data.conversation} participants={data.conversation.participants} />,
   rootElement
 );
